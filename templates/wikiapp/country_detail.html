@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Country: {{ country.name }}{% endblock %}
+{% block content %}
+<h2>{{ country.name }}</h2>
+{% if country.population %}
+<p>Population: {{ country.population }}</p>
+{% endif %}
+{% if country.area_in_sq_meters %}
+<p>{{ country.area_in_sq_meters }}</p>
+{% endif %}
+{%url 'wikiapp:country_update' arg1=country.uuid arg2=update as the_url %}
+<form action="{{the_url}}">
+        <button class = "gfg" type="">
+            Update
+        </button>
+    </form>
+{%url 'wikiapp:country_delete' arg1=country.uuid arg2=delete as the_url1 %}
+<form action="/delete/" >
+        <button class = "gfg" type="submit">
+            Delete
+        </button>
+    </form>
+{% endblock content %}

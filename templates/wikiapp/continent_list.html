@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Continent List{% endblock title %}
+{% block content %}
+<h2>Continent List</h2>
+<ul>
+{% for continent in continent_list %}
+<li><a href="{% url 'wikiapp:continent_detail' continent.uuid %}">{{ continent.name }}</a></li>
+{% endfor %}
+</ul>
+{% endblock content %}

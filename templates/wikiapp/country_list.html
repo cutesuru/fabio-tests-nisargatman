@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Country List{% endblock title %}
+{% block content %}
+<h2>CountryList</h2>
+<ul>
+{% for country in country_list %}
+<li><a href="{% url 'wikiapp:country_detail' country.uuid %}">{{ country.name }}</a></li>
+{% endfor %}
+</ul>
+{% endblock content %}

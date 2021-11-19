@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Continent: {{ continent.name }}{% endblock %}
+{% block content %}
+<h2>{{ continent.name }}</h2>
+{% if continent.population %}
+<p>Population: {{ continent.population }}</p>
+{% endif %}
+{% if continent.area_in_sq_meters %}
+<p>{{ continent.area_in_sq_meters }}</p>
+{% endif %}
+{%url 'wikiapp:continent_update' arg1=continent.uuid arg2=update as the_url %}
+<form action="{{the_url}}">
+        <button class = "gfg" type="">
+            Update
+        </button>
+    </form>
+{%url 'wikiapp:continent_delete' arg1=continent.uuid arg2=delete as the_url1 %}
+<form action="/delete/" >
+        <button class = "gfg" type="submit">
+            Delete
+        </button>
+    </form>
+{% endblock content %}
