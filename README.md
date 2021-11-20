@@ -8,6 +8,26 @@ Models Used:
 2)Country
 3)City
 
+Application to store geographical data with the following details:
+- name,
+- population,
+- area per sq meter,
+- number of hopsitals,
+- number of parks,
+- number of roads,
+- Date of creation,
+- Date of updation
+
+It offers the possibility to (from the index view):
+- manually add Country,City and Continents,
+- see the whole list of Cities,Countries and Continents (in the table)
+- offer option and deleting the entries. 
+
+The api view connects to Django Rest Framework and allows:
+- checking the whole list of books,
+- adding, updating and deleting entries,
+- filtering entries using query strings.
+
 Information about the attributes and the api is documented in /doc/build/index.html.
 
 ## Deploy
@@ -32,3 +52,6 @@ python3 -m pip install -r requirements-test.txt
 
 
 <img src="https://static.scarf.sh/a.png?x-pxid=44779bf0-9262-4801-bb88-4a36ee0fdcfe" />
+
+
+There are some unit tests set up for this project (testing model). To run them use `python manage.py test` command.
