@@ -1,5 +1,7 @@
 # Wikiapp
 
+##Part 1
+-----------------------------------------------------------------------------
 ## What is WikiApp?
 Wikiapp is used to perform CRUD operations based on geographical information.
 
@@ -55,3 +57,26 @@ python3 -m pip install -r requirements-test.txt
 
 
 There are some unit tests set up for this project (testing model). To run them use `python manage.py test` command.
+
+##Part 2
+-----------------------------------------------------------------------------
+
+Asynchronous call with CRUD operations for geographical data
+
+Modules Used:
+1)RabbitMQ
+2)Celery
+
+All the aysnchronus task is added in wikiapp/tasks.py.
+
+For creation,there is no need of concurrency condition.
+
+For updation and deletion atomic function is added to prevent race condition.
+
+RabbitMQ installation with choco package:
+
+`choco install rabbitmq` to install rabbitmq
+
+To check background logs of aysnc task:
+
+`celery -A wikiproject.celery worker --loglevel=debug`
