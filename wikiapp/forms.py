@@ -1,9 +1,16 @@
 from django import forms
 from django.core.exceptions import ValidationError
 from .models import Country,Continent,City
+
+class ContinentForm(forms.ModelForm):
+      class Meta:
+          model=Continent
+          fields=('name','population','area_in_sq_meters')
+      
 """
 Validator to check the population and area of all countries of a continent less than or equal to continent population and area
 """
+
 class CountryForm(forms.ModelForm):
 
     class Meta:
@@ -21,6 +28,7 @@ class CountryForm(forms.ModelForm):
         print(per_type)
         items = Country.objects.filter(continent=per_type)
         print(items)
+        print("I am here")
         total_country_population=number
         val_population=0
         val_area=0
