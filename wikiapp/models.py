@@ -1,8 +1,16 @@
 from django.db import models
 import uuid
 from django.urls import reverse
-# Create your models here.
-""" Requires 3 models:Continent,Country,City"""
+
+
+class TimeStampedModel(models.Model):
+      """
+      An abstract base class model that provides selfupdating ``created`` and ``modified`` fields.
+      """
+      created = models.DateTimeField(auto_now_add=True)
+      modified = models.DateTimeField(auto_now=True)
+      class Meta:
+            abstract = True
 
 """Continent model
       Attributes:
@@ -10,16 +18,12 @@ from django.urls import reverse
           2)name:STRING
           3)population:INT
           4)area_in_sq_meters:INT
-          5)created_At:DateTime
-          6)updated_At:DateTime
 """
-class Continent(models.Model):
+class Continent(TimeStampedModel):
       uuid = models.UUIDField(primary_key = True,default = uuid.uuid4,editable = False)
       name=models.CharField(max_length=100,unique=True)
       population=models.IntegerField(null=False)
       area_in_sq_meters = models.FloatField(unique=False, null=False)
-      created_at = models.DateTimeField(auto_now_add=True)
-      updated_at = models.DateTimeField(auto_now=True)
 
       def __str__(self):
         return f"{self.name}"
@@ -38,15 +42,13 @@ class Continent(models.Model):
           7)Number of hospitals:INT
           8)Number of national parks:INT
 """
-class Country(models.Model):
+class Country(TimeStampedModel):
       uuid = models.UUIDField(primary_key = True,default = uuid.uuid4,editable = False)
       name = models.CharField(max_length=100,unique=True)
       population = models.IntegerField(null=False)
       area_in_sq_meters = models.FloatField(unique=False, null=False)
       number_of_hospitals = models.IntegerField(null=False)
       number_of_national_parks = models.IntegerField(null=False)
-      created_at = models.DateTimeField(auto_now_add=True)
-      updated_at = models.DateTimeField(auto_now=True)
       continent = models.ForeignKey(Continent, on_delete=models.CASCADE)
 
       def __str__(self):
@@ -67,15 +69,13 @@ class Country(models.Model):
           7)Number of roads:INT
           8)Number of trees:INT
 """
-class City(models.Model):
+class City(TimeStampedModel):
       uuid = models.UUIDField(primary_key = True,default = uuid.uuid4,editable = False)
       name = models.CharField(max_length=100,unique=True)
       population = models.IntegerField(null=False)
       area_in_sq_meters = models.FloatField(unique=False, null=False)
       number_of_roads = models.IntegerField(unique=False, null=True)
       number_of_trees = models.IntegerField(unique=False, null=True)
-      created_at = models.DateTimeField(auto_now_add=True)
-      updated_at = models.DateTimeField(auto_now=True)
       country = models.ForeignKey(Country, on_delete=models.CASCADE)
       
       def __str__(self):
